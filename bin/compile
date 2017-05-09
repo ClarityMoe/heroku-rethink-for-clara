@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "-----> Install Optional Dependencies"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+DOWNLOAD_URL="https://download.rethinkdb.com/dist/rethinkdb-2.3.5.tgz"
+
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+wget $DOWNLOAD_URL | tar xf rethinkdb-2.3.5.tgz
+cd rethink-2.3.5
+./configure --allow-fetch
+make
+make install 
